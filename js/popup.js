@@ -38,7 +38,7 @@
           var url = key;
           return function(){
             chrome.runtime.getBackgroundPage(function(eventPage) {
-              eventPage.storage.removeTab(url, function(){
+              eventPage.rlStorage.removeTab(url, function(){
                 chrome.tabs.create({'url': url}, null);
               });
             });
@@ -56,7 +56,7 @@
   document.addEventListener('DOMContentLoaded', function() {
 
     chrome.runtime.getBackgroundPage(function(eventPage) {
-      eventPage.storage.getAllTabs(populateList);
+      eventPage.rlStorage.getAllTabs(populateList);
     });
 
     getCurrentTab(function(tab) {
@@ -65,19 +65,19 @@
 
     document.getElementById("clearListButton").addEventListener('click', function() {
       chrome.runtime.getBackgroundPage(function(eventPage) {
-        eventPage.storage.clearAllTabs(populateList([]));
+        eventPage.rlStorage.clearAllTabs(populateList([]));
       });
     });
 
     document.getElementById("readLaterButton").addEventListener('click', function() {
-        getCurrentTab(function(tab) {
-          chrome.runtime.getBackgroundPage(function(eventPage) {
-            eventPage.storage.saveTab(tab.url, tab.title, function(){
-              chrome.tabs.remove(tab.id);
-            });
+      chrome.runtime.getBackgroundPage(function(eventPage){
+        eventPage.rlUtils.getCurrentTab(function(tab){
+          eventPage.rlStorage.saveTab(tab.url, tab.title, function(){
+            chrome.tabs.remove(tab.id);
           });
-        });
+        })
       });
+    });
   });
 
 })();
