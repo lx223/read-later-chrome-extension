@@ -7,5 +7,5 @@ As I am very new to Chrome Extension development and JavaScript, it may contain 
 ### Installation
 
 1. **[Download ZIP](https://github.com/lx223/read-later/archive/master.zip)** and unarchive to wherever you prefer
-2. Using **Google Chrome** browser, navigate to chrome://extensions/ and enable "Developer mode" in the top right corner
+2. Using **Google Chrome** browser, navigate to **chrome://extensions/** and enable "Developer mode" in the top right corner
 3. Click on the <kbd>Load unpacked extension...</kbd> button, browse to the unarchived directory of the downloaded release and confirm
