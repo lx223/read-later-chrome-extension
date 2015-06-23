@@ -9,7 +9,6 @@
 
   function renderTab(tab) {
     document.getElementById('title').textContent = tab.title;
-    document.getElementById('url').textContent = tab.url;
     document.getElementById('favIcon').src = "chrome://favicon/" + tab.url;
   }
 
@@ -29,7 +28,9 @@
         var favIcon = document.createElement('img');
         var title = document.createElement('span');
 
-        favIcon.className = "favIcon"
+        itemDiv.className = "cat-2";
+
+        favIcon.className = "favIcon";
         favIcon.src = "chrome://favicon/" + key;
         title.innerHTML = tabs[key];
 
@@ -53,10 +54,14 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+
     chrome.runtime.getBackgroundPage(function(eventPage) {
       eventPage.storage.getAllTabs(populateList);
     });
 
+    getCurrentTab(function(tab) {
+      renderTab(tab);
+    })
 
     document.getElementById("clearListButton").addEventListener('click', function() {
       chrome.runtime.getBackgroundPage(function(eventPage) {
@@ -66,7 +71,6 @@
 
     document.getElementById("readLaterButton").addEventListener('click', function() {
         getCurrentTab(function(tab) {
-          renderTab(tab);
           chrome.runtime.getBackgroundPage(function(eventPage) {
             eventPage.storage.saveTab(tab.url, tab.title, function(){
               chrome.tabs.remove(tab.id);

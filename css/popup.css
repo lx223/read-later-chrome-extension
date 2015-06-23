@@ -1,13 +1,13 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 200;
-	color: #444;
+	color: #555;
 	padding: 0;
 	margin: 0;
 	min-width: 300px;
 	max-width: 300px;
 	position: relative;
-	font-size: 12px;
+	font-size: 14px;
 	background: #f5f5f5;
 }
 a {
@@ -20,15 +20,11 @@ hr {
 	color: #ccc;
 }
 
-#statusDetail a {
-	color: #FFFFFF;
-}
-
 .hidden {
 	display: none;
 }
 
-#readLaterButton {
+button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #fcf8f2;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #fcf8f2;
 	box-shadow:inset 0px 1px 0px 0px #fcf8f2;
@@ -53,25 +49,23 @@ hr {
 	display:inline-block;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:15px;
+	font-size:12px;
 	font-weight:bold;
 	font-style:normal;
-	height:40px;
 	line-height:40px;
-	width:100px;
 	text-decoration:none;
 	text-align:center;
 	/*text-shadow:1px -21px 0px #cc9f52;*/
 }
 
-#readLaterButton:hover {
+button:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #eac380), color-stop(1, #fae4bd) );
   background:-moz-linear-gradient( center top, #eac380 5%, #fae4bd 100% );
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eac380', endColorstr='#fae4bd');
   background-color:#eac380;
 }
 
-#readLaterButton:active {
+button:active {
 	position:relative;
   top:1px;
 }
@@ -125,3 +119,45 @@ hr {
 	margin-right: 5px;
 	opacity: 0.8;
 }
+
+#tabList {
+	padding: 10px 20px;
+	margin: 0 auto;
+	background-color: #fff;
+	width: 580px;
+	padding: 10px;
+	padding: 5px 10px;
+	border-top: 8px solid #555;
+	background-color: #fff;
+	cursor: pointer;
+	font-size: 120%;
+	margin: 0 0 .2em 0;
+	color: #333;
+	text-decoration: none;
+	margin: 0;
+}
+
+.cat-1 {
+	border-top-color: #06f;
+	background-color: #fafaff; }
+.cat-1:hover {
+	border-top-color: #03f;
+	background-color: #bdf; }
+.cat-2 {
+	border-top-color: #c00;
+	background-color: #fffaf2; }
+.cat-2:hover {
+	border-top-color: #900;
+	background-color: #fdb; }
+.cat-3 {
+	border-top-color: #0c0;
+	background-color: #f2fff2; }
+.cat-3:hover {
+	border-top-color: #090;
+	background-color: #cfc; }
+.cat-4 {
+	border-top-color: #639;
+	background-color: #fff2ff; }
+.cat-4:hover {
+	border-top-color: #609;
+	background-color: #ecf; }
