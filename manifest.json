@@ -16,9 +16,15 @@
     },
 
   "browser_action": {
-    "default_icon": "img/save.png",
+    "default_icon": "img/icon19_active.png",
     "default_title": "Read Later",
     "default_popup": "popup.html"
+  },
+
+  "icons": {
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
   },
 
   "permissions": [
@@ -26,6 +32,7 @@
     "tabs",
     "storage",
     "unlimitedStorage",
+    "webNavigation",
     "chrome://favicon/*"
   ]
 }
