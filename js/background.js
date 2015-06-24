@@ -1,9 +1,11 @@
 chrome.runtime.onStartup.addListener(function() {
   console.log('Starting browser...');
+  rlUtils.updateBadge();
 });
 
 chrome.runtime.onInstalled.addListener(function(details) {
   console.log('Installed extension...');
+  rlUtils.updateBadge();
 });
 
 if (chrome.webNavigation && chrome.webNavigation.onDOMContentLoaded &&
@@ -21,12 +23,13 @@ if (chrome.webNavigation && chrome.webNavigation.onDOMContentLoaded &&
 }
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
-  // alert("1");
-    console.log('tabs activated...');
+  console.log('tabs activated...');
+  rlUtils.updateBadge();
 });
 
-//listen for current tab to be changed
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    // alert("2");
-    console.log('tabs updated...');
+  console.log('tabs updated...');
+  rlUtils.updateBadge();
 });
+
+chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});

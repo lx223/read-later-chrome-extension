@@ -1,12 +1,6 @@
 (function(){
   'use strict';
 
-  function getCurrentTab(callback) {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      callback(tabs[0]);
-    });
-  }
-
   function renderTab(tab) {
     document.getElementById('title').textContent = tab.title;
     document.getElementById('favIcon').src = "chrome://favicon/" + tab.url;
@@ -56,12 +50,12 @@
   document.addEventListener('DOMContentLoaded', function() {
 
     chrome.runtime.getBackgroundPage(function(eventPage) {
-      eventPage.rlStorage.getAllTabs(populateList);
+      eventPage.rlUtils.getCurrentTab(renderTab);
     });
 
-    getCurrentTab(function(tab) {
-      renderTab(tab);
-    })
+    chrome.runtime.getBackgroundPage(function(eventPage) {
+      eventPage.rlStorage.getAllTabs(populateList);
+    });
 
     document.getElementById("clearListButton").addEventListener('click', function() {
       chrome.runtime.getBackgroundPage(function(eventPage) {
