@@ -1,10 +1,11 @@
 (function(window){
+  'use strict';
+
   var rlStorage = {
 
     getAllTabs : function(callback){
       chrome.storage.sync.get(null, function(items){
-        //TODO add in error handling
-        if (callback !== null) callback(items);
+        if (typeof(callback) === "function") callback(items);
       })
     },
 
@@ -13,28 +14,42 @@
       tab[key] = value;
       chrome.storage.sync.set(tab, function(){
         //TODO add in error handling
-        if (callback !== null) callback();
+        if (typeof(callback) === "function") callback();
         console.log(key + " " + value + " " + " SAVED Successfully");
       });
     },
 
     removeTab : function(key, callback) {
       chrome.storage.sync.remove(key, function(){
-        //TODO add in error handling
-        if (callback !== null) callback();
+        if (typeof(callback) === "function") callback();
         console.log(key + " " + " REMOVED Successfully");
       })
     },
 
     clearAllTabs : function(callback) {
       chrome.storage.sync.clear(function(){
-        //TODO add in error handling
-        if (callback !== null) callback();
+        if (typeof(callback) === "function") callback();
         console.log("Tabs cleared");
       });
     }
   };
 
   window.rlStorage = rlStorage;
-  
+
+  chrome.storage.onChanged.addListener(function(changes, namespace) {
+    rlUtils.updateBadge();
+    for (var key in changes) {
+      var storageChange = changes[key];
+      if (storageChange.oldValue === undefined) rlContextMenu.addToReadingList(key, storageChange.newValue);
+      if (storageChange.newValue === undefined) rlContextMenu.removeFromReadingList(key);
+
+      console.log('Storage key "%s" in namespace "%s" changed. ' +
+                  'Old value was "%s", new value is "%s".',
+                  key,
+                  namespace,
+                  storageChange.oldValue,
+                  storageChange.newValue);
+    }
+  });
+
 })(window);

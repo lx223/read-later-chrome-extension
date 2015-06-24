@@ -10,13 +10,14 @@
       "scripts": ["js/eventPage.js",
                   "js/utils.js",
                   "js/background.js",
-                  "js/storage.js"
+                  "js/storage.js",
+                  "js/contextMenu.js"
                   ],
       "persistent": false
     },
 
   "browser_action": {
-    "default_icon": "img/icon19_active.png",
+    "default_icon": "img/icon38_active.png",
     "default_title": "Read Later",
     "default_popup": "popup.html"
   },
@@ -33,6 +34,7 @@
     "storage",
     "unlimitedStorage",
     "webNavigation",
+    "contextMenus",
     "chrome://favicon/*"
   ]
 }

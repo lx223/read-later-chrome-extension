@@ -28,13 +28,10 @@
         favIcon.src = "chrome://favicon/" + key;
         title.innerHTML = tabs[key];
 
-        itemDiv.addEventListener("click", (function(){
-          var url = key;
+        itemDiv.addEventListener("click", (function(url){
           return function(){
             chrome.runtime.getBackgroundPage(function(eventPage) {
-              eventPage.rlStorage.removeTab(url, function(){
-                chrome.tabs.create({'url': url}, null);
-              });
+              eventPage.rlUtils.createTab(url);
             });
           }
         })(key));
@@ -65,11 +62,7 @@
 
     document.getElementById("readLaterButton").addEventListener('click', function() {
       chrome.runtime.getBackgroundPage(function(eventPage){
-        eventPage.rlUtils.getCurrentTab(function(tab){
-          eventPage.rlStorage.saveTab(tab.url, tab.title, function(){
-            chrome.tabs.remove(tab.id);
-          });
-        })
+        eventPage.rlUtils.saveAndCloseCurrentTab();
       });
     });
   });

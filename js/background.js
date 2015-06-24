@@ -23,13 +23,9 @@ if (chrome.webNavigation && chrome.webNavigation.onDOMContentLoaded &&
 }
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
-  console.log('tabs activated...');
-  rlUtils.updateBadge();
+
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  console.log('tabs updated...');
-  rlUtils.updateBadge();
-});
 
-chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
+});
