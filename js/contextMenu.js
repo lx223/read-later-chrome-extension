@@ -4,6 +4,7 @@
   var contexts = ["all"];
   var menuIds = {
     "saveAndClose" : "read-later",
+    "saveAndCloseAll" : "read-all-later",
     "separator" : "separator",
     "tabsList" : "tabs-list"
   }
@@ -14,7 +15,13 @@
 
   chrome.contextMenus.create({
     "id" : menuIds.saveAndClose,
-    "title" : "Save and close tab",
+    "title" : "Read tab later",
+    "contexts" : contexts
+  })
+
+  chrome.contextMenus.create({
+    "id" : menuIds.saveAndCloseAll,
+    "title" : "Read all tabs later",
     "contexts" : contexts
   })
 
@@ -66,7 +73,11 @@
   chrome.contextMenus.onClicked.addListener(function(info, tab){
     console.log("context menu onCliked event fired...");
     if (info.menuItemId === menuIds.saveAndClose) {
-      rlUtils.saveAndCloseTab();
+      rlUtils.saveAndCloseTab(tab);
+    }
+
+    if (info.menuItemId === menuIds.saveAndCloseAll) {
+      rlUtils.saveAndCloseCurrentWindow();
     }
 
     if (info.parentMenuItemId === menuIds.tabsList) {

@@ -8,7 +8,7 @@
 
   function populateList(tabs) {
     var tabList = document.getElementById('tabList');
-    document.getElementById('tabCount').textContent = Object.keys(tabs).length;
+    document.getElementById('tabCount').textContent = "Total number of reading items: " + Object.keys(tabs).length;
 
     while (tabList.firstChild) {
       tabList.removeChild(tabList.firstChild);
@@ -62,7 +62,7 @@
 
     document.getElementById("readLaterButton").addEventListener('click', function() {
       chrome.runtime.getBackgroundPage(function(eventPage){
-        eventPage.rlUtils.saveAndCloseCurrentTab();
+        eventPage.rlUtils.saveAndCloseCurrentTab(document.getElementById("cusTitle").value);
       });
     });
   });

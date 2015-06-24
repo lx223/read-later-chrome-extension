@@ -21,21 +21,40 @@
 
     },
 
-    saveAndCloseTab : function(tab, callback) {
-      this.getCurrentTab(function(tab){
-        rlStorage.saveTab(tab.url, tab.title, function(){
-          chrome.tabs.remove(tab.id);
-        });
-      })
+    saveAndCloseTab : function(tab, cusTitle, callback) {
+      if (cusTitle === "") console.log("hello");
+      var url = tab.url,
+          title = cusTitle !== "" ? cusTitle : tab.title;
+      rlStorage.saveTab(url, title, function(){
+        chrome.tabs.remove(tab.id);
+      });
       if (callback !== undefined) callback();
     },
 
-    saveAndCloseCurrentTab : function(callback) {
+    saveAndCloseCurrentTab : function(cusTitle, callback) {
       this.getCurrentTab(function(tab){
-        rlStorage.saveTab(tab.url, tab.title, function(){
-          chrome.tabs.remove(tab.id);
-        });
+        rlUtils.saveAndCloseTab(tab, cusTitle, callback);
       })
+    },
+
+    saveAndCloseCurrentWindow : function(){
+      chrome.windows.getCurrent({"populate" : true}, function(window){
+        var object = {};
+        if (window.hasOwnProperty("tabs")) {
+          for (var tab in window.tabs) {
+            var url = window.tabs[tab].url;
+            var title = window.tabs[tab].title;
+            object[url] = title;
+          }
+          rlStorage.saveWindow(object, function(){
+            chrome.windows.remove(window.id);
+          });
+        }
+      })
+    },
+
+    openALlInNewWindow : function() {
+
     },
 
     createTab : function(url) {

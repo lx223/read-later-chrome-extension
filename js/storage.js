@@ -19,6 +19,14 @@
       });
     },
 
+    saveWindow : function(windowObject, callback){
+      chrome.storage.sync.set(windowObject, function(){
+        //TODO add in error handling
+        if (typeof(callback) === "function") callback();
+        console.log(windowObject + " SAVED Successfully");
+      });
+    },
+
     removeTab : function(key, callback) {
       chrome.storage.sync.remove(key, function(){
         if (typeof(callback) === "function") callback();
