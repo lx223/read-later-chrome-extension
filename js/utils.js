@@ -36,13 +36,16 @@
           chrome.tabs.remove(tab.id);
         });
       })
-      if (callback !== undefined) callback();
     },
 
     createTab : function(url) {
       chrome.tabs.create({'url': url}, function(){
         rlStorage.removeTab(url);
       });
+    },
+
+    setCommandKey : function() {
+      chrome.tabs.create({'url': "chrome://extensions/configureCommands"});
     }
   }
 

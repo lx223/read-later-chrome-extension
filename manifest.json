@@ -1,7 +1,7 @@
 {
   "name": "Read Later",
   "description": "Saves tabs and read later",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "minimum_chrome_version": "24",
 
   "manifest_version": 2,
@@ -26,6 +26,21 @@
     "16": "img/icon16.png",
     "48": "img/icon48.png",
     "128": "img/icon128.png"
+  },
+
+  "commands": {
+    "read-later": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "A quick way to save&close current tab to read later"
+    },
+
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default" : "Ctrl+Shift+L"
+      }
+    }
   },
 
   "permissions": [

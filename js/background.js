@@ -29,3 +29,7 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 });
+
+chrome.commands.onCommand.addListener(function(command) {
+  rlUtils.saveAndCloseCurrentTab();
+});
