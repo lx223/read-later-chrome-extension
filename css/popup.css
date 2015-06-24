@@ -4,12 +4,40 @@ body {
 	color: #555;
 	padding: 0;
 	margin: 0;
-	min-width: 300px;
-	max-width: 300px;
+	width: 400px;
 	position: relative;
 	font-size: 14px;
 	background: #f5f5f5;
 }
+
+#header {
+	background-color: #999;
+}
+
+#header h1{
+  color: #555;
+  font-size: 32px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+#header span {
+  color: #AAA;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+#message{
+  float: left;
+  margin: 12px 0;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0;
+}
+
 a {
 	outline : none;
 	color: #3889AB;
@@ -70,16 +98,6 @@ button:active {
   top:1px;
 }
 
-#header {
-	padding: 5px 15px 5px 16px;
-	border-bottom: 1px solid #ccc;
-	font-size: 14px;
-	height: 20px;
-	width: 100%;
-	line-height: 19px;
-	background: #134960;
-	color: #fff;
-}
 #header img {
 	z-index: 2;
 	padding-right: 3px;
@@ -102,7 +120,7 @@ button:active {
 	padding: 5px 0;
 }
 
-.menuOption, .item {
+.menuOption .item {
 	font-size: 17px;
 	line-height: 2em;
 	white-space: nowrap;

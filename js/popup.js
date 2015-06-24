@@ -1,6 +1,14 @@
 (function(){
   'use strict';
 
+  function updateStatus(message) {
+
+  }
+
+  function getFaviconUrl(url) {
+    return "chrome://favicon/" + url;
+  }
+
   function renderTab(tab) {
     document.getElementById('title').textContent = tab.title;
     document.getElementById('favIcon').src = "chrome://favicon/" + tab.url;
@@ -25,7 +33,7 @@
         itemDiv.className = "cat-2";
 
         favIcon.className = "favIcon";
-        favIcon.src = "chrome://favicon/" + key;
+        favIcon.src = getFaviconUrl(key);
         title.innerHTML = tabs[key];
 
         itemDiv.addEventListener("click", (function(url){

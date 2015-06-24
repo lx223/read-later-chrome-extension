@@ -11,7 +11,7 @@
     updateBadge : function() {
       rlStorage.getAllTabs(function(tabs){
         var size = Object.keys(tabs).length;
-        if (size > 10000) chrome.browserAction.setBadgeText({text : "..."});
+        if (size > 99) chrome.browserAction.setBadgeText({text : size.toString() + "+"});
         else if (size > 0) chrome.browserAction.setBadgeText({text : size.toString()});
         else chrome.browserAction.setBadgeText({text : ""});
       })
