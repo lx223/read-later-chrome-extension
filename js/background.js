@@ -2,10 +2,10 @@
 
   function initExtn() {
     console.log('Initialising extension...');
-    rlUtils.updateBadge();
     rlStorage.init();
     rlUtils.init();
     rlContextMenu.init();
+    
     // wire up command
     chrome.commands.onCommand.addListener(function(command) {
       rlUtils.saveAndCloseCurrentTab();

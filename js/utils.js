@@ -58,7 +58,23 @@
     },
 
     openALlInNewWindow : function() {
-
+      rlStorage.getAllTabs(function(tabs){
+        var createData = {};
+        var urls = [];
+        for (var key in tabs) {
+          if (tabs.hasOwnProperty(key)) {
+            urls.push(key);
+          }
+        }
+        createData["url"] = urls;
+        createData["focused"] = true;
+        console.log(createData);
+        chrome.windows.create(createData, function(){
+          console.log('Opened all items...');
+          console.log(createData);
+          rlStorage.clearAllTabs();
+        });
+      });
     },
 
     createTab : function(url) {
@@ -73,11 +89,11 @@
 
     init : function() {
       console.log('Initialising rlUtils...');
+      chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
+      this.updateBadge();
     }
   }
 
   window.rlUtils = rlUtils;
-
-  chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
 
 })(window);

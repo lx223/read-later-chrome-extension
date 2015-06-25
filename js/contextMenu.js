@@ -5,8 +5,10 @@
   var menuIds = {
     "saveAndClose" : "read-later",
     "saveAndCloseAll" : "read-all-later",
-    "separator" : "separator",
-    "tabsList" : "tabs-list"
+    "separator1" : "separator-1",
+    "separator2" : "separator-2",
+    "tabsList" : "tabs-list",
+    "openAll" : "open-all"
   }
 
   var rlContextMenu = {
@@ -44,7 +46,7 @@
       })
 
       chrome.contextMenus.create({
-        "id" : menuIds.separator,
+        "id" : menuIds.separator1,
         "type" : "separator",
         "contexts" : contexts
       })
@@ -57,6 +59,18 @@
         if (chrome.runtime.lastError) {
           console.log("Got expected error: " + chrome.runtime.lastError.message);
         } else {
+          chrome.contextMenus.create({
+            "id" : menuIds.openAll,
+            "title" : "Open all tabs",
+            "parentId": menuIds.tabsList
+          })
+
+          chrome.contextMenus.create({
+            "id" : menuIds.separator2,
+            "type" : "separator",
+            "parentId": menuIds.tabsList
+          })
+
           rlStorage.getAllTabs(function(tabs){
             for (var key in tabs) {
               if (tabs.hasOwnProperty(key)) {
@@ -77,13 +91,11 @@
         console.log(tab);
         if (info.menuItemId === menuIds.saveAndClose) {
           rlUtils.saveAndCloseTab(tab);
-        }
-
-        if (info.menuItemId === menuIds.saveAndCloseAll) {
+        } else if (info.menuItemId === menuIds.saveAndCloseAll) {
           rlUtils.saveAndCloseCurrentWindow();
-        }
-
-        if (info.parentMenuItemId === menuIds.tabsList) {
+        } else if (info.menuItemId === menuIds.openAll) {
+          rlUtils.openALlInNewWindow();
+        } else if (info.parentMenuItemId === menuIds.tabsList) {
           rlUtils.createTab(info.menuItemId);
         }
       })
