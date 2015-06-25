@@ -1,17 +1,22 @@
 (function(window){
   'use strict';
 
+  var MAX_TITLE_LENGTH = 50,
+      MAX_BADGE_COUNT = 99;
+
   var rlUtils = {
     getCurrentTab : function(callback){
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        if (callback !== undefined) callback(tabs[0]);
+        if (typeof(callback) === "function"){
+          callback(tabs[0]);
+        }
       });
     },
 
     updateBadge : function() {
       rlStorage.getAllTabs(function(tabs){
         var size = Object.keys(tabs).length;
-        if (size > 99) chrome.browserAction.setBadgeText({text : size.toString() + "+"});
+        if (size > MAX_BADGE_COUNT) chrome.browserAction.setBadgeText({text : size.toString() + "+"});
         else if (size > 0) chrome.browserAction.setBadgeText({text : size.toString()});
         else chrome.browserAction.setBadgeText({text : ""});
       })
@@ -25,10 +30,13 @@
       if (cusTitle === "") console.log("hello");
       var url = tab.url,
           title = cusTitle !== "" ? cusTitle : tab.title;
+      if (title.length > MAX_TITLE_LENGTH) title = title.substr(0, MAX_TITLE_LENGTH) + "...";
       rlStorage.saveTab(url, title, function(){
         chrome.tabs.remove(tab.id);
       });
-      if (callback !== undefined) callback();
+      if (typeof(callback) === "function"){
+        callback();
+      }
     },
 
     saveAndCloseCurrentTab : function(cusTitle, callback) {
