@@ -39,25 +39,28 @@
         if (typeof(callback) === "function") callback();
         console.log("Tabs cleared");
       });
+    },
+
+    init : function() {
+      console.log('Initialising rlStorage...');
+
+      chrome.storage.onChanged.addListener(function(changes, namespace) {
+        rlUtils.updateBadge();
+        for (var key in changes) {
+          var storageChange = changes[key];
+          if (storageChange.oldValue === undefined) rlContextMenu.addToReadingList(key, storageChange.newValue);
+          if (storageChange.newValue === undefined) rlContextMenu.removeFromReadingList(key);
+
+          console.log('Storage key "%s" in namespace "%s" changed. ' +
+                      'Old value was "%s", new value is "%s".',
+                      key,
+                      namespace,
+                      storageChange.oldValue,
+                      storageChange.newValue);
+        }
+      });
     }
   };
 
   window.rlStorage = rlStorage;
-
-  chrome.storage.onChanged.addListener(function(changes, namespace) {
-    rlUtils.updateBadge();
-    for (var key in changes) {
-      var storageChange = changes[key];
-      if (storageChange.oldValue === undefined) rlContextMenu.addToReadingList(key, storageChange.newValue);
-      if (storageChange.newValue === undefined) rlContextMenu.removeFromReadingList(key);
-
-      console.log('Storage key "%s" in namespace "%s" changed. ' +
-                  'Old value was "%s", new value is "%s".',
-                  key,
-                  namespace,
-                  storageChange.oldValue,
-                  storageChange.newValue);
-    }
-  });
-
 })(window);

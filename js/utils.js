@@ -22,14 +22,10 @@
       })
     },
 
-    eventsInit : function() {
-
-    },
-
     saveAndCloseTab : function(tab, cusTitle, callback) {
-      if (cusTitle === "") console.log("hello");
       var url = tab.url,
-          title = cusTitle !== "" ? cusTitle : tab.title;
+          title = tab.title;
+      if (typeof(cusTitle) === "string" && cusTitle !== "") title = cusTitle;
       if (title.length > MAX_TITLE_LENGTH) title = title.substr(0, MAX_TITLE_LENGTH) + "...";
       rlStorage.saveTab(url, title, function(){
         chrome.tabs.remove(tab.id);
@@ -73,6 +69,10 @@
 
     setCommandKey : function() {
       chrome.tabs.create({'url': "chrome://extensions/configureCommands"});
+    },
+
+    init : function() {
+      console.log('Initialising rlUtils...');
     }
   }
 

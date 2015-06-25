@@ -7,8 +7,7 @@
   "manifest_version": 2,
 
   "background": {
-      "scripts": ["js/eventPage.js",
-                  "js/utils.js",
+      "scripts": ["js/utils.js",
                   "js/background.js",
                   "js/storage.js",
                   "js/contextMenu.js"
