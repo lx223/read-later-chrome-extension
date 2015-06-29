@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Read Later Chrome Extension</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  	<link href='https://fonts.googleapis.com/css?family=Open+Sans:700,300,600,400' rel='stylesheet' type='text/css'>
+    <link type="text/css" href="css/popup.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <div id="header"><h1>Read Later</h1><span>Save now, Read Later</span></div>
+
+      <div id="status-container">
+        <div id="message"></div>
+        <div id="tabInfoContainer">
+          <img id="favIcon" class="favIcon" display="inline" />
+          <div id="title"></div>
+        </div>
+        <div class="group optsCurrent menuOption" id="readLaterOption">
+          <button id="readLaterButton">Save&Close tab</button>
+          <button id="clearListButton">Clear list</button>
+      	</div>
+      </div>
+
+      <div>
+        <div id="tabCount">tabCount</div>
+        <textarea id="cusTitle" placeholder="Enter the title you want..." autofocus></textarea>
+        <div ></div>
+        <div class="bs-example">
+          <div id="tabList" class="list-group"></div>
+        </div>
+      </div>
+
+      <div class="bs-example">
+    <div class="list-group">
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">What is HTML?</h4>
+            <p class="list-group-item-text">HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages.</p>
+        </a>
+        <a href="#" class="list-group-item active">
+            <h4 class="list-group-item-heading">What is Bootstrap?</h4>
+            <p class="list-group-item-text">Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of HTML and CSS based design template.</p>
+        </a>
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">What is CSS?</h4>
+            <p class="list-group-item-text">CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc.</p>
+        </a>
+    </div>
+</div>
+
+      <div id="footer"></div>
+    </div>
+  </body>
+</html>

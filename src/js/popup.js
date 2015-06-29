@@ -14,6 +14,36 @@
     document.getElementById('favIcon').src = "chrome://favicon/" + tab.url;
   }
 
+  function getListItem(url, title) {
+    var item = document.createElement('a');
+    var favIcon = document.createElement('img');
+    var titleSpan = document.createElement('span');
+    var trashIconSpan = document.createElement('span');
+
+    item.className = "list-group-item";
+    item.href = url;
+
+    favIcon.className = "favIcon";
+    favIcon.src = getFaviconUrl(url);
+    titleSpan.innerHTML = title;
+    titleSpan.title = title;
+    trashIconSpan.className = "glyphicon glyphicon-trash";
+
+    item.addEventListener("click", (function(url){
+      return function(){
+        chrome.runtime.getBackgroundPage(function(eventPage) {
+          eventPage.rlUtils.createTab(url);
+        });
+      }
+    })(url));
+
+    // Append search results to the HTML nodes
+    item.appendChild(favIcon);
+    item.appendChild(titleSpan);
+    item.appendChild(trashIconSpan);
+    return item;
+  }
+
   function populateList(tabs) {
     var tabList = document.getElementById('tabList');
     document.getElementById('tabCount').textContent = "Total number of reading items: " + Object.keys(tabs).length;
@@ -26,28 +56,8 @@
       if (tabs.hasOwnProperty(key)) {
         console.log(key + " -> " + tabs[key]);
 
-        var itemDiv = document.createElement('div');
-        var favIcon = document.createElement('img');
-        var title = document.createElement('span');
-
-        itemDiv.className = "cat-2";
-
-        favIcon.className = "favIcon";
-        favIcon.src = getFaviconUrl(key);
-        title.innerHTML = tabs[key];
-
-        itemDiv.addEventListener("click", (function(url){
-          return function(){
-            chrome.runtime.getBackgroundPage(function(eventPage) {
-              eventPage.rlUtils.createTab(url);
-            });
-          }
-        })(key));
-
-        // Append search results to the HTML nodes
-        itemDiv.appendChild(favIcon);
-        itemDiv.appendChild(title);
-        tabList.appendChild(itemDiv);
+        var item = getListItem(key, tabs[key]);
+        tabList.appendChild(item);
       }
     }
   }

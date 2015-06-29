@@ -108,14 +108,6 @@ button:active {
 	width: 16px;
 }
 
-.item {
-
-}
-
-.items-list-group {
-  height: 200px;
-  overflow-y: scroll;
-}
 .group {
 	padding: 5px 0;
 }
@@ -138,7 +130,7 @@ button:active {
 	opacity: 0.8;
 }
 
-#tabList {
+/*#tabList {
 	padding: 10px 20px;
 	margin: 0 auto;
 	background-color: #fff;
@@ -153,7 +145,7 @@ button:active {
 	color: #333;
 	text-decoration: none;
 	margin: 0;
-}
+}*/
 
 .cat-1 {
 	border-top-color: #06f;
@@ -179,3 +171,7 @@ button:active {
 .cat-4:hover {
 	border-top-color: #609;
 	background-color: #ecf; }
+
+	.glyphicon-trash {
+		float: right;
+	}

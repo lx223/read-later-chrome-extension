@@ -1,2 +1,5 @@
 img/originals
-key.pem
+**/*.pem
+/node_modules
+/build/crx/*.crx
+/build/zip/*.zip

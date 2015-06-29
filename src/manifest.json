@@ -42,6 +42,8 @@
     }
   },
 
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com/ajax/*; object-src 'self'",
+
   "permissions": [
     "activeTab",
     "tabs",
@@ -49,6 +51,9 @@
     "unlimitedStorage",
     "webNavigation",
     "contextMenus",
-    "chrome://favicon/*"
+    "chrome://favicon/*",
+    "https://maxcdn.bootstrapcdn.com/bootstrap/*",
+    "https://ajax.googleapis.com/ajax/*",
+    "<all_urls>"
   ]
 }
