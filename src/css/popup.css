@@ -11,7 +11,11 @@ body {
 }
 
 #header {
-	background-color: #d19a9a;
+	background-color: #e9e9e9;
+}
+
+#status-container {
+	background-color: #d4d4d4;
 }
 
 #header img {
@@ -20,7 +24,6 @@ body {
 }
 
 #header h1{
-  color: #555;
   font-size: 32px;
   text-transform: uppercase;
   padding: 0;
@@ -28,7 +31,6 @@ body {
   display: block;
 }
 #header span {
-  color: #AAA;
   font-size: 16px;
   padding: 0;
   margin: 0;
@@ -42,7 +44,6 @@ body {
   font-weight: bold;
   padding: 0;
 }
-
 
 a {
 	outline : none;
