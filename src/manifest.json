@@ -42,18 +42,6 @@
     }
   },
 
-  "key": "-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmTPV8n/mL02J7uIv6FNk
-DRYKXwr96R3w8VhnaihNHQD3WhdapLv2ApUhHMSXRN/YYhBFyN1mzHPa4d3YFv7/
-AjiSTVlay9xhZGkwm4m9aw23ddkPGYDFRx5o78f/TfKB3GkqdoQKQB7v6+raAUfY
-yHZ+OFPgoRsXujDODKMYi7+aOTD4yrkPlPjgGFTGVkHswttbdwbEF9YVptbOAlJN
-YJUZ509jzTqiW9z9PazMwkbH5dRf5lgob3hRE0+DbUsFS0e7CZ/CJ95q4/zHckd4
-kpM8V5yQwIw+shKx1uCxCqVXocHie2Ht5a5jt5xfT0b4woMUZj3T9wsSbepT5/DH
-NQIDAQAB
------END PUBLIC KEY-----",
-
-  "content_security_policy": "script-src 'self' https://ajax.googleapis.com/ajax/*; object-src 'self'",
-
   "permissions": [
     "activeTab",
     "tabs",
@@ -62,5 +50,7 @@ NQIDAQAB
     "contextMenus",
     "chrome://favicon/*",
     "<all_urls>"
-  ]
+  ],
+
+  "key": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmTPV8n/mL02J7uIv6FNkDRYKXwr96R3w8VhnaihNHQD3WhdapLv2ApUhHMSXRN/YYhBFyN1mzHPa4d3YFv7/AjiSTVlay9xhZGkwm4m9aw23ddkPGYDFRx5o78f/TfKB3GkqdoQKQB7v6+raAUfYyHZ+OFPgoRsXujDODKMYi7+aOTD4yrkPlPjgGFTGVkHswttbdwbEF9YVptbOAlJNYJUZ509jzTqiW9z9PazMwkbH5dRf5lgob3hRE0+DbUsFS0e7CZ/CJ95q4/zHckd4kpM8V5yQwIw+shKx1uCxCqVXocHie2Ht5a5jt5xfT0b4woMUZj3T9wsSbepT5/DHNQIDAQAB-----END PUBLIC KEY-----"
 }
