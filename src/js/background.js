@@ -11,14 +11,18 @@
       rlUtils.saveAndCloseCurrentTab();
     });
   }
+
+  // A quick fix to wire events to listener whenever the eventpages are loaded
   initExtn();
 
   chrome.runtime.onStartup.addListener(function() {
     console.log('Starting browser...');
+    // initExtn();
   });
 
   chrome.runtime.onInstalled.addListener(function(details) {
     console.log('Installed extension...');
+    // initExtn();
   });
 
   chrome.tabs.onActivated.addListener(function(activeInfo) {

@@ -1,16 +1,16 @@
 {
   "name": "Read Later",
   "description": "Saves tabs and read later",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "minimum_chrome_version": "24",
 
   "manifest_version": 2,
 
   "background": {
       "scripts": ["js/utils.js",
-                  "js/background.js",
                   "js/storage.js",
-                  "js/contextMenu.js"
+                  "js/contextMenu.js",
+                  "js/background.js"
                   ],
       "persistent": false
     },
