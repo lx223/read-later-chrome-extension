@@ -3,6 +3,7 @@
 
   function updateStatus(message) {
     console.log("Update status: " + message);
+    if (message) document.getElementById('message').textContent = message;
   }
 
   function getFaviconUrl(url) {
@@ -11,9 +12,8 @@
   }
 
   function renderTab(tab) {
-    console.log("Render tab: " + tab);
-    document.getElementById('title').textContent = tab.title;
-    document.getElementById('favIcon').src = "chrome://favicon/" + tab.url;
+    console.log("Render tab info: " + tab);
+    document.getElementById("cusTitle").value = tab.title;
   }
 
   function getListItem(url, title) {
@@ -67,6 +67,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
+    updateStatus("Customise the tile below and leave it as default");
 
     chrome.runtime.getBackgroundPage(function(eventPage) {
       eventPage.rlUtils.getCurrentTab(renderTab);
