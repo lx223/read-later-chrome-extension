@@ -11,7 +11,8 @@ module.exports = function(grunt) {
                 dest: "build/crx/<%= pkg.name %>-<%= manifest.version %>-dev.crx",
                 zipDest: "build/zip/<%= pkg.name %>-<%= manifest.version %>-dev.zip",
                 options: {
-                    "privateKey": "key.pem"
+                    "privateKey": "key.pem",
+                    "maxBuffer": 500 * 1024
                 }
             }
         }

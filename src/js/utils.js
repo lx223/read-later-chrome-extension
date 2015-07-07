@@ -19,7 +19,7 @@
         if (size > MAX_BADGE_COUNT) chrome.browserAction.setBadgeText({text : size.toString() + "+"});
         else if (size > 0) chrome.browserAction.setBadgeText({text : size.toString()});
         else chrome.browserAction.setBadgeText({text : ""});
-      })
+      });
     },
 
     saveAndCloseTab : function(tab, cusTitle, callback) {
@@ -38,7 +38,7 @@
     saveAndCloseCurrentTab : function(cusTitle, callback) {
       this.getCurrentTab(function(tab){
         rlUtils.saveAndCloseTab(tab, cusTitle, callback);
-      })
+      });
     },
 
     saveAndCloseCurrentWindow : function(){
@@ -54,7 +54,7 @@
             chrome.windows.remove(window.id);
           });
         }
-      })
+      });
     },
 
     openALlInNewWindow : function() {
@@ -92,7 +92,7 @@
       chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
       this.updateBadge();
     }
-  }
+  };
 
   window.rlUtils = rlUtils;
 

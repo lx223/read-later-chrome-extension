@@ -4,12 +4,14 @@
   var rlStorage = {
 
     getAllTabs : function(callback){
+      console.log("Get all tabs...");
       chrome.storage.sync.get(null, function(items){
         if (typeof(callback) === "function") callback(items);
-      })
+      });
     },
 
     saveTab : function(key, value, callback){
+      console.log("Save tab...");
       var tab = {};
       tab[key] = value;
       chrome.storage.sync.set(tab, function(){
@@ -20,6 +22,7 @@
     },
 
     saveWindow : function(windowObject, callback){
+      console.log("Save window...");
       chrome.storage.sync.set(windowObject, function(){
         //TODO add in error handling
         if (typeof(callback) === "function") callback();
@@ -28,13 +31,15 @@
     },
 
     removeTab : function(key, callback) {
+      console.log("Remove tab...");
       chrome.storage.sync.remove(key, function(){
         if (typeof(callback) === "function") callback();
         console.log(key + " " + " REMOVED Successfully");
-      })
+      });
     },
 
     clearAllTabs : function(callback) {
+      console.log("Clear all tabs...");
       chrome.storage.sync.clear(function(){
         if (typeof(callback) === "function") callback();
         console.log("Tabs cleared");

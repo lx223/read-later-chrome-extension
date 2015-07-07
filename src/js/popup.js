@@ -2,19 +2,22 @@
   'use strict';
 
   function updateStatus(message) {
-
+    console.log("Update status: " + message);
   }
 
   function getFaviconUrl(url) {
+    console.log("Get favicon url: " + url);
     return "chrome://favicon/" + url;
   }
 
   function renderTab(tab) {
+    console.log("Render tab: " + tab);
     document.getElementById('title').textContent = tab.title;
     document.getElementById('favIcon').src = "chrome://favicon/" + tab.url;
   }
 
   function getListItem(url, title) {
+    console.log("Get list item: " + url + " title: " + title);
     var item = document.createElement('a');
     var favIcon = document.createElement('img');
     var titleSpan = document.createElement('span');
@@ -34,7 +37,7 @@
         chrome.runtime.getBackgroundPage(function(eventPage) {
           eventPage.rlUtils.createTab(url);
         });
-      }
+      };
     })(url));
 
     // Append search results to the HTML nodes
@@ -45,6 +48,7 @@
   }
 
   function populateList(tabs) {
+    console.log("Populate list: " + tabs);
     var tabList = document.getElementById('tabList');
     document.getElementById('tabCount').textContent = "Total number of reading items: " + Object.keys(tabs).length;
 

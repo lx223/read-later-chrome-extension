@@ -1,4 +1,4 @@
-img/originals
+/resources
 **/*.pem
 /node_modules
 /build/crx/*.crx

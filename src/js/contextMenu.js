@@ -9,10 +9,11 @@
     "separator2" : "separator-2",
     "tabsList" : "tabs-list",
     "openAll" : "open-all"
-  }
+  };
 
   var rlContextMenu = {
     addToReadingList : function(menuId, menuTitle) {
+      console.log('Function addToReadingList...');
       chrome.contextMenus.create({
         "id" : menuId,
         "title": menuTitle,
@@ -21,6 +22,7 @@
     },
 
     removeFromReadingList : function(menuId) {
+      console.log('Function removeFromReadingList...');
       chrome.contextMenus.remove(menuId, function(){
         console.log("a context menu removed...");
       });
@@ -28,7 +30,6 @@
 
     init : function() {
       console.log('Initialising rlContextMenu...');
-
       chrome.contextMenus.removeAll(function(){
         console.log("all context menus removed...");
       });
@@ -37,19 +38,19 @@
         "id" : menuIds.saveAndClose,
         "title" : "Read tab later",
         "contexts" : contexts
-      })
+      });
 
       chrome.contextMenus.create({
         "id" : menuIds.saveAndCloseAll,
         "title" : "Read all tabs later",
         "contexts" : contexts
-      })
+      });
 
       chrome.contextMenus.create({
         "id" : menuIds.separator1,
         "type" : "separator",
         "contexts" : contexts
-      })
+      });
 
       chrome.contextMenus.create({
         "id" : menuIds.tabsList,
@@ -63,13 +64,13 @@
             "id" : menuIds.openAll,
             "title" : "Open all tabs",
             "parentId": menuIds.tabsList
-          })
+          });
 
           chrome.contextMenus.create({
             "id" : menuIds.separator2,
             "type" : "separator",
             "parentId": menuIds.tabsList
-          })
+          });
 
           rlStorage.getAllTabs(function(tabs){
             for (var key in tabs) {
@@ -84,7 +85,7 @@
           });
           console.log("reading list context menu populated...");
         }
-      })
+      });
 
       chrome.contextMenus.onClicked.addListener(function(info, tab){
         console.log("context menu onCliked event fired...");
@@ -98,7 +99,7 @@
         } else if (info.parentMenuItemId === menuIds.tabsList) {
           rlUtils.createTab(info.menuItemId);
         }
-      })
+      });
     }
   };
 
