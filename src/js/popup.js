@@ -67,7 +67,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    updateStatus("Customise the tile below and leave it as default");
+    updateStatus("Customise the tile below or leave it as default");
 
     chrome.runtime.getBackgroundPage(function(eventPage) {
       eventPage.rlUtils.getCurrentTab(renderTab);
