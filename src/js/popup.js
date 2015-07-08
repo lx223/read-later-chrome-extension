@@ -13,7 +13,7 @@
 
   function renderTab(tab) {
     console.log("Render tab info: " + tab);
-    document.getElementById("cusTitle").placeholder = "Default title: " + tab.title;
+    document.getElementById("cusTitle").placeholder = tab.title;
   }
 
   function getListItem(url, title) {
