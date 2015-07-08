@@ -89,7 +89,7 @@
 
     init : function() {
       console.log('Initialising rlUtils...');
-      chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
+      chrome.browserAction.setBadgeBackgroundColor({color:[0, 0, 0, 125]});
       this.updateBadge();
     }
   };
