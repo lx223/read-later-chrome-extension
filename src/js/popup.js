@@ -78,9 +78,12 @@
     });
 
     document.getElementById("clearListButton").addEventListener('click', function() {
-      chrome.runtime.getBackgroundPage(function(eventPage) {
-        eventPage.rlStorage.clearAllTabs(populateList([]));
-      });
+      var confirmed = confirm("Are you sure you want to delete all links?");
+      if(confirmed == true){
+        chrome.runtime.getBackgroundPage(function(eventPage) {
+          eventPage.rlStorage.clearAllTabs(populateList([]));
+        });
+      }
     });
 
     document.getElementById("readLaterButton").addEventListener('click', function() {
