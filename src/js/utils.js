@@ -22,12 +22,20 @@
       });
     },
 
+    getTabObject : function(title) {
+      if (title.length > MAX_TITLE_LENGTH) title = title.substr(0, MAX_TITLE_LENGTH) + "...";
+      var tab = {};
+      tab.timestamp = Date.now();
+      tab.title = title;
+      return tab;
+    },
+
     saveAndCloseTab : function(tab, cusTitle, callback) {
       var url = tab.url,
-          title = tab.title;
-      if (typeof(cusTitle) === "string" && cusTitle !== "") title = cusTitle;
-      if (title.length > MAX_TITLE_LENGTH) title = title.substr(0, MAX_TITLE_LENGTH) + "...";
-      rlStorage.saveTab(url, title, function(){
+          title = (typeof(cusTitle) === "string" && cusTitle !== "") ? cusTitle : tab.title,
+          key = url,
+          value = rlUtils.getTabObject(title);
+      rlStorage.saveTab(key, value, function(){
         chrome.tabs.remove(tab.id);
       });
       if (typeof(callback) === "function"){
@@ -36,7 +44,7 @@
     },
 
     saveAndCloseCurrentTab : function(cusTitle, callback) {
-      this.getCurrentTab(function(tab){
+      rlUtils.getCurrentTab(function(tab){
         rlUtils.saveAndCloseTab(tab, cusTitle, callback);
       });
     },
@@ -48,7 +56,7 @@
           for (var tab in window.tabs) {
             var url = window.tabs[tab].url;
             var title = window.tabs[tab].title;
-            object[url] = title;
+            object[url] = rlUtils.getTabObject(title);
           }
           rlStorage.saveWindow(object, function(){
             chrome.windows.remove(window.id);

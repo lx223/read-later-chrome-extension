@@ -47,22 +47,35 @@
     return item;
   }
 
-  function populateList(tabs) {
-    console.log("Populate list: " + tabs);
+  function populateList(items) {
+    console.log("Populate list...");
+    document.getElementById('tabCount').textContent = "Total number of reading items: " + Object.keys(items).length;
     var tabList = document.getElementById('tabList');
-    document.getElementById('tabCount').textContent = "Total number of reading items: " + Object.keys(tabs).length;
 
+    // Remove the current list
     while (tabList.firstChild) {
       tabList.removeChild(tabList.firstChild);
     }
 
-    for (var key in tabs) {
-      if (tabs.hasOwnProperty(key)) {
-        console.log(key + " -> " + tabs[key]);
-
-        var item = getListItem(key, tabs[key]);
-        tabList.appendChild(item);
+    var tabs = [];
+    for (var key in items) {
+      if (items.hasOwnProperty(key)) {
+        tabs.push({"url" : key,
+                   "title" : items[key].title,
+                   "timestamp" : items[key].timestamp
+                 });
       }
+    }
+
+    tabs.sort(function(a, b){
+      if(a.timestamp > b.timestamp) return -1;
+      if(a.timestamp < b.timestamp) return 1;
+      return 0;
+    });
+
+    for (var index = 0; index < tabs.length; ++index) {
+      var item = getListItem(tabs[index].url, tabs[index].title);
+      tabList.appendChild(item);
     }
   }
 

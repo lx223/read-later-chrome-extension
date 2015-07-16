@@ -14,10 +14,10 @@
       console.log("Save tab...");
       var tab = {};
       tab[key] = value;
+      console.log(tab);
       chrome.storage.sync.set(tab, function(){
-        //TODO add in error handling
+        console.log(key + " " + JSON.stringify(value) + " " + " SAVED Successfully");
         if (typeof(callback) === "function") callback();
-        console.log(key + " " + value + " " + " SAVED Successfully");
       });
     },
 
@@ -53,7 +53,7 @@
         rlUtils.updateBadge();
         for (var key in changes) {
           var storageChange = changes[key];
-          if (storageChange.oldValue === undefined) rlContextMenu.addToReadingList(key, storageChange.newValue);
+          if (storageChange.oldValue === undefined) rlContextMenu.addToReadingList(key, storageChange.newValue.title);
           if (storageChange.newValue === undefined) rlContextMenu.removeFromReadingList(key);
 
           console.log('Storage key "%s" in namespace "%s" changed. ' +

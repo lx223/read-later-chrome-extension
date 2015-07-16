@@ -77,7 +77,7 @@
               if (tabs.hasOwnProperty(key)) {
                 chrome.contextMenus.create({
                   "id" : key,
-                  "title": tabs[key],
+                  "title": tabs[key].title,
                   "parentId": menuIds.tabsList
                 });
               }
