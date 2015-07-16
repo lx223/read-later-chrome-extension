@@ -36,7 +36,7 @@
 
       chrome.contextMenus.create({
         "id" : menuIds.saveAndClose,
-        "title" : "Read tab later",
+        "title" : "Read current tab later",
         "contexts" : contexts
       });
 
