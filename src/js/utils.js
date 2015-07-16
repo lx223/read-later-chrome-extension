@@ -22,19 +22,20 @@
       });
     },
 
-    getTabObject : function(title) {
+    getTabObject : function(title, group) {
       if (title.length > MAX_TITLE_LENGTH) title = title.substr(0, MAX_TITLE_LENGTH) + "...";
       var tab = {};
       tab.timestamp = Date.now();
       tab.title = title;
+      tab.group = (group === "") ? "Default" : group;
       return tab;
     },
 
-    saveAndCloseTab : function(tab, cusTitle, callback) {
+    saveAndCloseTab : function(tab, cusTitle, group, callback) {
       var url = tab.url,
           title = (typeof(cusTitle) === "string" && cusTitle !== "") ? cusTitle : tab.title,
           key = url,
-          value = rlUtils.getTabObject(title);
+          value = rlUtils.getTabObject(title, group);
       rlStorage.saveTab(key, value, function(){
         chrome.tabs.remove(tab.id);
       });
@@ -43,9 +44,9 @@
       }
     },
 
-    saveAndCloseCurrentTab : function(cusTitle, callback) {
+    saveAndCloseCurrentTab : function(cusTitle, group, callback) {
       rlUtils.getCurrentTab(function(tab){
-        rlUtils.saveAndCloseTab(tab, cusTitle, callback);
+        rlUtils.saveAndCloseTab(tab, cusTitle, group, callback);
       });
     },
 
@@ -74,12 +75,9 @@
             urls.push(key);
           }
         }
-        createData["url"] = urls;
-        createData["focused"] = true;
-        console.log(createData);
+        createData.url = urls;
+        createData.focused = true;
         chrome.windows.create(createData, function(){
-          console.log('Opened all items...');
-          console.log(createData);
           rlStorage.clearAllTabs();
         });
       });

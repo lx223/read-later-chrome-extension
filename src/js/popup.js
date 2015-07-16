@@ -41,7 +41,6 @@
       };
     })(url));
 
-    // Append search results to the HTML nodes
     item.appendChild(favIcon);
     item.appendChild(titleSpan);
     item.appendChild(trashIconSpan);
@@ -51,32 +50,47 @@
   function populateList(items) {
     console.log("Populate list...");
     document.getElementById('tabCount').textContent = "Total number of reading items: " + Object.keys(items).length;
-    var tabList = document.getElementById('tabList');
+    var listContainer = document.getElementById('list-container');
 
     // Remove the current list
     while (tabList.firstChild) {
       tabList.removeChild(tabList.firstChild);
     }
 
-    var tabs = [];
+    var groups = {};
     for (var key in items) {
       if (items.hasOwnProperty(key)) {
-        tabs.push({"url" : key,
+        var tab = {"url" : key,
                    "title" : items[key].title,
                    "timestamp" : items[key].timestamp
-                 });
+                 },
+            group = (typeof(items[key].group) === "undefined") ? "Default" : items[key].group;
+        if (groups[group]) {
+          groups[group].push(tab);
+        } else {
+          groups[group] = [tab];
+        }
       }
     }
 
-    tabs.sort(function(a, b){
-      if(a.timestamp > b.timestamp) return -1;
-      if(a.timestamp < b.timestamp) return 1;
-      return 0;
-    });
+    for (key in groups) {
+      if (groups[key]) {
+        groups[key].sort(function(a, b){
+          if(a.timestamp > b.timestamp) return -1;
+          if(a.timestamp < b.timestamp) return 1;
+          return 0;
+        });
 
-    for (var index = 0; index < tabs.length; ++index) {
-      var item = getListItem(tabs[index].url, tabs[index].title);
-      tabList.appendChild(item);
+        var groupList = document.createElement('div');
+        groupList.className = "list-group";
+        var tabs = groups[key];
+        for (var index = 0; index < tabs.length; ++index) {
+          var item = getListItem(tabs[index].url, tabs[index].title);
+          groupList.appendChild(item);
+        }
+
+        listContainer.appendChild(groupList);
+      }
     }
   }
 
@@ -102,7 +116,9 @@
 
     document.getElementById("readLaterButton").addEventListener('click', function() {
       chrome.runtime.getBackgroundPage(function(eventPage){
-        eventPage.rlUtils.saveAndCloseCurrentTab(document.getElementById("cusTitle").value);
+        eventPage.rlUtils.saveAndCloseCurrentTab(document.getElementById("cusTitle").value,
+                                                 document.getElementById("group").value
+                                                );
       });
     });
   });

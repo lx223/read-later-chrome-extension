@@ -176,7 +176,7 @@ button:active {
 	background-color: #ecf; }
 
 
-#cusTitle {
+textarea {
 	width: 400px;
 	resize: vertical;
 	/*word-wrap: break-word;*/
