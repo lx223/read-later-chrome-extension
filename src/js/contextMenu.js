@@ -47,45 +47,47 @@
       });
 
       chrome.contextMenus.create({
-        "id" : menuIds.separator1,
-        "type" : "separator",
+        "id" : menuIds.openAll,
+        "title" : "Open all tabs",
         "contexts" : contexts
       });
 
-      chrome.contextMenus.create({
-        "id" : menuIds.tabsList,
-        "title" : "Reading list",
-        "contexts" : contexts
-      }, function(){
-        if (chrome.runtime.lastError) {
-          console.log("Got expected error: " + chrome.runtime.lastError.message);
-        } else {
-          chrome.contextMenus.create({
-            "id" : menuIds.openAll,
-            "title" : "Open all tabs",
-            "parentId": menuIds.tabsList
-          });
-
-          chrome.contextMenus.create({
-            "id" : menuIds.separator2,
-            "type" : "separator",
-            "parentId": menuIds.tabsList
-          });
-
-          rlStorage.getAllTabs(function(tabs){
-            for (var key in tabs) {
-              if (tabs.hasOwnProperty(key)) {
-                chrome.contextMenus.create({
-                  "id" : key,
-                  "title": tabs[key].title,
-                  "parentId": menuIds.tabsList
-                });
-              }
-            }
-          });
-          console.log("reading list context menu populated...");
-        }
-      });
+      // chrome.contextMenus.create({
+      //   "id" : menuIds.separator1,
+      //   "type" : "separator",
+      //   "contexts" : contexts
+      // });
+      //
+      // chrome.contextMenus.create({
+      //   "id" : menuIds.tabsList,
+      //   "title" : "Reading list",
+      //   "contexts" : contexts
+      // }, function(){
+      //   if (chrome.runtime.lastError) {
+      //     console.log("Got expected error: " + chrome.runtime.lastError.message);
+      //   } else {
+      //
+      //
+      //     chrome.contextMenus.create({
+      //       "id" : menuIds.separator2,
+      //       "type" : "separator",
+      //       "parentId": menuIds.tabsList
+      //     });
+      //
+      //     rlStorage.getAllTabs(function(tabs){
+      //       for (var key in tabs) {
+      //         if (tabs.hasOwnProperty(key)) {
+      //           chrome.contextMenus.create({
+      //             "id" : key,
+      //             "title": tabs[key].title,
+      //             "parentId": menuIds.tabsList
+      //           });
+      //         }
+      //       }
+      //     });
+      //     console.log("reading list context menu populated...");
+      //   }
+      // });
 
       chrome.contextMenus.onClicked.addListener(function(info, tab){
         console.log("context menu onCliked event fired...");
