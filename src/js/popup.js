@@ -16,6 +16,7 @@
     document.getElementById("cusTitle").placeholder = tab.title;
   }
 
+  // Create the HTML object for an item
   function getListItem(url, title) {
     console.log("Get list item: " + url + " title: " + title);
     var item = document.createElement('a');

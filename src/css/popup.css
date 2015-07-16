@@ -146,6 +146,10 @@ button:active {
   border-top-right-radius: 4px;
 }
 
+.glyphicon, .glyphicon-trash {
+	float: right;
+}
+
 .cat-1 {
 	border-top-color: #06f;
 	background-color: #fafaff; }
