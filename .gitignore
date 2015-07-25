@@ -1,5 +1,3 @@
 /resources
 **/*.pem
 /node_modules
-/build/crx/*.crx
-/build/zip/*.zip
