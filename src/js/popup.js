@@ -35,8 +35,15 @@
     })(url));
 
     // Set trash's properties
-    trash.className = "glyphicon glyphicon-trash";
     trash.src = trashIconURI;
+    trash.addEventListener("click", (function(url){
+      return function(){
+        chrome.runtime.getBackgroundPage(function(eventPage) {
+          eventPage.rlStorage.removeTab(url);
+        });
+        trash.parentNode.parentNode.removeChild(itemContainer);
+      };
+    })(url));
 
     itemContainer.appendChild(item);
     itemContainer.appendChild(trash);

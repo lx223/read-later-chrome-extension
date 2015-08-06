@@ -144,6 +144,7 @@ button:active {
 
 .list-group-item img:hover {
 	-webkit-filter: grayscale(0) opacity(100%);
+	cursor: pointer;
 }
 
 .list-group-item a {
