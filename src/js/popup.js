@@ -1,8 +1,7 @@
 (function(){
   'use strict';
 
-  var activeTrashIconURI = "img/trash128_active.png",
-      inactiveTrashIconURI = "img/trash128_inactive.png";
+  var trashIconURI = "img/trash128_active.png";
 
   function updateStatus(message) {
     console.log("Update status: " + message);
@@ -37,7 +36,7 @@
 
     // Set trash's properties
     trash.className = "glyphicon glyphicon-trash";
-    trash.src = activeTrashIconURI;
+    trash.src = trashIconURI;
 
     itemContainer.appendChild(item);
     itemContainer.appendChild(trash);
