@@ -19,18 +19,14 @@
   // Create the HTML object for an item
   function getListItem(url, title) {
     console.log("Get list item: " + url + " title: " + title);
-    var item = document.createElement('a');
-    var favIcon = document.createElement('img');
-    var titleSpan = document.createElement('span');
-    var trashIconSpan = document.createElement('span');
+    var itemContainer = document.createElement('div');
+    var item = document.createElement('a'); // Create HTML DOM for the clickable item
+    var trashIconSpan = document.createElement('span'); // Create HTML DOM to trash an item
 
-    item.className = "list-group-item";
+    itemContainer.className = "list-group-item";
+
     item.href = url;
-
-    favIcon.className = "favIcon";
-    favIcon.src = getFaviconUrl(url);
-    titleSpan.innerHTML = title;
-    titleSpan.title = title;
+    item.innerHTML = title;
     trashIconSpan.className = "glyphicon glyphicon-trash";
 
     item.addEventListener("click", (function(url){
@@ -41,10 +37,9 @@
       };
     })(url));
 
-    item.appendChild(favIcon);
-    item.appendChild(titleSpan);
-    item.appendChild(trashIconSpan);
-    return item;
+    itemContainer.appendChild(item);
+    itemContainer.appendChild(trashIconSpan);
+    return itemContainer;
   }
 
   function populateList(items) {
