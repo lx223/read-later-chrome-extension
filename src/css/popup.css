@@ -82,17 +82,16 @@ button {
 	border:1px solid #eeb44f;
 	border-radius: 25px;
 	display:inline-block;
-	color:#ffffff;
+	color:#060606;
 	font-size:12px;
 	font-weight:bold;
 	font-style:normal;
 	line-height:40px;
 	text-decoration:none;
 	text-align:center;
-	width: 45%;
+	width: 32%;
 	margin: auto;
 	display: inline-block;
-
 	/*text-shadow:1px -21px 0px #cc9f52;*/
 }
 
