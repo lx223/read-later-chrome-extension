@@ -37,8 +37,7 @@
 
     "_execute_browser_action": {
       "suggested_key": {
-        "default" : "Ctrl+Shift+A",
-        "mac" : "Cmd+Shift+A"
+        "default" : "Ctrl+Shift+A"
       }
     }
   },
