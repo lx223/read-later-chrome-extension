@@ -1,8 +1,9 @@
 {
-  "name": "Read Later",
-  "description": "Saves tabs and read later",
-  "version": "0.1.12",
-  "minimum_chrome_version": "24",
+  "name": "Read Later - save tab to read later",
+  "short_name": "Read Later",
+  "description": "An easy way to save a tab and revisit it later",
+  "version": "0.1.13",
+  "minimum_chrome_version": "26",
 
   "manifest_version": 2,
 
