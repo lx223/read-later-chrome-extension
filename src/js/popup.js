@@ -1,14 +1,12 @@
 (function(){
   'use strict';
 
+  var activeTrashIconURI = "img/trash128_active.png",
+      inactiveTrashIconURI = "img/trash128_inactive.png";
+
   function updateStatus(message) {
     console.log("Update status: " + message);
     if (message) document.getElementById('message').textContent = message;
-  }
-
-  function getFaviconUrl(url) {
-    console.log("Get favicon url: " + url);
-    return "chrome://favicon/" + url;
   }
 
   function renderTab(tab) {
@@ -21,14 +19,14 @@
     console.log("Get list item: " + url + " title: " + title);
     var itemContainer = document.createElement('div');
     var item = document.createElement('a'); // Create HTML DOM for the clickable item
-    var trashIconSpan = document.createElement('span'); // Create HTML DOM to trash an item
+    var trash = document.createElement('img'); // Create HTML DOM to trash an item
 
+    // Set itemContainer's properties
     itemContainer.className = "list-group-item";
 
+    // Set item's properties
     item.href = url;
     item.innerHTML = title;
-    trashIconSpan.className = "glyphicon glyphicon-trash";
-
     item.addEventListener("click", (function(url){
       return function(){
         chrome.runtime.getBackgroundPage(function(eventPage) {
@@ -37,8 +35,12 @@
       };
     })(url));
 
+    // Set trash's properties
+    trash.className = "glyphicon glyphicon-trash";
+    trash.src = activeTrashIconURI;
+
     itemContainer.appendChild(item);
-    itemContainer.appendChild(trashIconSpan);
+    itemContainer.appendChild(trash);
     return itemContainer;
   }
 

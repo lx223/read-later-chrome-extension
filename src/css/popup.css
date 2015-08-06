@@ -136,7 +136,13 @@ button:active {
 	display: inline-block;
 }
 
-.list-group-item span {
+.list-group-item img {
+	height: 38px;
+	width: 38px;
+	float: right;
+}
+
+.list-group-item a {
 	overflow-x: scroll;
   white-space: nowrap;
 }
@@ -144,10 +150,6 @@ button:active {
 .list-group-item:first-child {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-}
-
-.glyphicon, .glyphicon-trash {
-	float: right;
 }
 
 .cat-1 {
