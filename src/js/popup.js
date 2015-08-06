@@ -102,7 +102,7 @@
 
     document.getElementById("clearListButton").addEventListener('click', function() {
       var confirmed = confirm("Are you sure you want to delete all links?");
-      if(confirmed == true){
+      if(confirmed === true){
         chrome.runtime.getBackgroundPage(function(eventPage) {
           eventPage.rlStorage.clearAllTabs(populateList([]));
         });
