@@ -53,9 +53,6 @@
         rlUtils.updateBadge();
         for (var key in changes) {
           var storageChange = changes[key];
-          if (storageChange.oldValue === undefined) rlContextMenu.addToReadingList(key, storageChange.newValue.title);
-          if (storageChange.newValue === undefined) rlContextMenu.removeFromReadingList(key);
-
           console.log('Storage key "%s" in namespace "%s" changed. ' +
                       'Old value was "%s", new value is "%s".',
                       key,
