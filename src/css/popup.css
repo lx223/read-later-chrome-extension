@@ -140,6 +140,11 @@ button:active {
 	height: 38px;
 	width: 38px;
 	float: right;
+	-webkit-filter: grayscale(1) opacity(25%);
+}
+
+.list-group-item img:hover {
+	-webkit-filter: grayscale(0) opacity(100%);
 }
 
 .list-group-item a {
