@@ -3,31 +3,13 @@
 
   var contexts = ["all"];
   var menuIds = {
-    "saveAndClose" : "read-later",
-    "saveAndCloseAll" : "read-all-later",
-    "separator1" : "separator-1",
-    "separator2" : "separator-2",
-    "tabsList" : "tabs-list",
+    "readTabLater" : "read-later",
+    "readAllLater" : "read-all-later",
+    "readLinkLater" : "read-link-later",
     "openAll" : "open-all"
   };
 
   var rlContextMenu = {
-    addToReadingList : function(menuId, menuTitle) {
-      console.log('Function addToReadingList...');
-      chrome.contextMenus.create({
-        "id" : menuId,
-        "title": menuTitle,
-        "parentId": menuIds.tabsList
-      });
-    },
-
-    removeFromReadingList : function(menuId) {
-      console.log('Function removeFromReadingList...');
-      chrome.contextMenus.remove(menuId, function(){
-        console.log("a context menu removed...");
-      });
-    },
-
     init : function() {
       console.log('Initialising rlContextMenu...');
       chrome.contextMenus.removeAll(function(){
@@ -35,13 +17,19 @@
       });
 
       chrome.contextMenus.create({
-        "id" : menuIds.saveAndClose,
+        "id" : menuIds.readTabLater,
         "title" : "Read current tab later",
         "contexts" : contexts
       });
 
       chrome.contextMenus.create({
-        "id" : menuIds.saveAndCloseAll,
+        "id" : menuIds.readLinkLater,
+        "title" : "Read this link later",
+        "contexts" : ["link"]
+      });
+
+      chrome.contextMenus.create({
+        "id" : menuIds.readAllLater,
         "title" : "Read all tabs later",
         "contexts" : contexts
       });
@@ -52,59 +40,21 @@
         "contexts" : contexts
       });
 
-      // chrome.contextMenus.create({
-      //   "id" : menuIds.separator1,
-      //   "type" : "separator",
-      //   "contexts" : contexts
-      // });
-      //
-      // chrome.contextMenus.create({
-      //   "id" : menuIds.tabsList,
-      //   "title" : "Reading list",
-      //   "contexts" : contexts
-      // }, function(){
-      //   if (chrome.runtime.lastError) {
-      //     console.log("Got expected error: " + chrome.runtime.lastError.message);
-      //   } else {
-      //
-      //
-      //     chrome.contextMenus.create({
-      //       "id" : menuIds.separator2,
-      //       "type" : "separator",
-      //       "parentId": menuIds.tabsList
-      //     });
-      //
-      //     rlStorage.getAllTabs(function(tabs){
-      //       for (var key in tabs) {
-      //         if (tabs.hasOwnProperty(key)) {
-      //           chrome.contextMenus.create({
-      //             "id" : key,
-      //             "title": tabs[key].title,
-      //             "parentId": menuIds.tabsList
-      //           });
-      //         }
-      //       }
-      //     });
-      //     console.log("reading list context menu populated...");
-      //   }
-      // });
-
       chrome.contextMenus.onClicked.addListener(function(info, tab){
         console.log("context menu onCliked event fired...");
         console.log(tab);
-        if (info.menuItemId === menuIds.saveAndClose) {
+        if (info.menuItemId === menuIds.readTabLater) {
           rlUtils.saveAndCloseTab(tab);
-        } else if (info.menuItemId === menuIds.saveAndCloseAll) {
+        } else if (info.menuItemId === menuIds.readAllLater) {
           rlUtils.saveAndCloseCurrentWindow();
         } else if (info.menuItemId === menuIds.openAll) {
           rlUtils.openALlInNewWindow();
-        } else if (info.parentMenuItemId === menuIds.tabsList) {
-          rlUtils.createTab(info.menuItemId);
+        } else if (info.menuItemId === menuIds.readLinkLater) {
+          rlUtils.saveLink(info.selectionText, info.linkUrl);
         }
       });
     }
   };
 
   window.rlContextMenu = rlContextMenu;
-
 })(window);

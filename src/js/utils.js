@@ -50,6 +50,12 @@
       });
     },
 
+    saveLink : function(title, url) {
+      var key = url,
+          value = rlUtils.getTabObject(title);
+      rlStorage.saveTab(key, value);
+    },
+
     saveAndCloseCurrentWindow : function(){
       chrome.windows.getCurrent({"populate" : true}, function(window){
         var object = {};
