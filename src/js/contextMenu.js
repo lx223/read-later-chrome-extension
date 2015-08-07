@@ -18,7 +18,7 @@
 
       chrome.contextMenus.create({
         "id" : menuIds.readTabLater,
-        "title" : "Read current tab later",
+        "title" : "Read this tab later",
         "contexts" : contexts
       });
 
@@ -34,11 +34,11 @@
         "contexts" : contexts
       });
 
-      chrome.contextMenus.create({
-        "id" : menuIds.openAll,
-        "title" : "Open all tabs",
-        "contexts" : contexts
-      });
+      // chrome.contextMenus.create({
+      //   "id" : menuIds.openAll,
+      //   "title" : "Open all tabs",
+      //   "contexts" : contexts
+      // });
 
       chrome.contextMenus.onClicked.addListener(function(info, tab){
         console.log("context menu onCliked event fired...");
