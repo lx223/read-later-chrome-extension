@@ -8,7 +8,7 @@
 
 body {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.42857143;
 	color: #333;
 	font-weight: 200;
@@ -107,24 +107,19 @@ button:active {
   top:1px;
 }
 
-.favIcon {
-	height: 16px;
-	width: 16px;
-}
-
 .list-group {
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0,0,0,.075);
 	padding-left: 0;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	width: auto;
 }
 
 .list-group-item {
   position: relative;
   display: block;
-  padding: 10px 15px;
-  margin-bottom: -1px;
+  padding: 10px 10px;
+  margin-bottom: 0px;
   background-color: #fff;
   border: 1px solid #ddd;
 	color: #555;
@@ -135,21 +130,20 @@ button:active {
 	display: inline-block;
 }
 
+.list-group-item a {
+  white-space: nowrap;
+}
+
 .list-group-item img {
 	height: 38px;
 	width: 38px;
 	float: right;
-	-webkit-filter: grayscale(1) opacity(25%);
+	-webkit-filter: grayscale(1) opacity(50%);
 }
 
 .list-group-item img:hover {
 	-webkit-filter: grayscale(0) opacity(100%);
 	cursor: pointer;
-}
-
-.list-group-item a {
-	overflow-x: scroll;
-  white-space: nowrap;
 }
 
 .list-group-item:first-child {
