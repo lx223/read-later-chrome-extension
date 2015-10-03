@@ -1,45 +1,33 @@
 <!doctype html>
 <html>
   <head>
+    <title>Read Later</title>
     <link rel="stylesheet" href="lib/font-awesome.min.css">
-    <link rel="stylesheet" href="lib/bootstrap.min.css">
-    <link rel="stylesheet" href="lib/bootstrap-theme.min.css">
-    <link type="text/css" href="css/popup.css" rel="stylesheet">
+    <link href="css/general.css" rel="stylesheet" type="text/css" charset="UTF-8">
+    <link href="css/popup.css" rel="stylesheet" type="text/css">
+
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/popup.js"></script>
   </head>
 
   <body>
-    <div>
-      <div id="header">
-        <img alt="Read Later Chrome Extension" src="img/icon48.png" />
-        <h1>Read Later</h1>
+    <div class="page add-page">
+
+      <textarea class="title-input" id="cusTitle" maxlength="255" type="text" placeholder="Add an item..."></textarea>
+
+      <div class="add-button-container">
+        <button class="red add-button" id="readLaterButton" tabindex="0">Add to ReadLater</button>
       </div>
 
-      <div id="status-container">
-        <div id="message">Default message</div>
-        <textarea id="cusTitle" maxlength="50"></textarea>
-
-        <select id="groupList">
-          <option value="Default" selected="true">Default</option>
-        </select>
-        <textarea id="group" placeholder="Leave unchanged to save to default group" maxlength="50"></textarea>
-        <div class="button-container">
-          <button id="readLaterButton">Save to list</button>
-          <button id="clearListButton">Clear list</button>
-          <button id="openAllButton">Open all items</button>
-      	</div>
+      <div class="item-count">Total number of reading items: <span id="tabCount">0</span></div>
+      <div id="list-container">
+        <div id="tabList"></div>
       </div>
 
-      <div>
-        <div id="tabCount">Total number of reading items: 0</div>
-        <div id="list-container">
-          <div id="tabList" class="list-group"></div>
-        </div>
+      <div class="footer" tabindex="0">
+        <a class="rate-link" href="https://chrome.google.com/webstore/detail/read-later-save-tab-and-r/eimchnaiimdmfefpplagekjgigbjmohd/reviews" target="_blank">Love ReadLater?</a>
       </div>
-
-      <div id="footer"></div>
     </div>
   </body>
 </html>

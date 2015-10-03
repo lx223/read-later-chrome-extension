@@ -3,12 +3,7 @@
 
   var trashIconURI = "img/trash128_active.png";
 
-  function updateStatus(message) {
-    console.log("Update status: " + message);
-    if (message) document.getElementById('message').textContent = message;
-  }
-
-  function renderTab(tab) {
+  function getTabTitle(tab) {
     console.log("Render tab info: " + tab);
     document.getElementById("cusTitle").placeholder = tab.title;
   }
@@ -21,7 +16,7 @@
     var trash = document.createElement('img'); // Create HTML DOM to trash an item
 
     // Set itemContainer's properties
-    itemContainer.className = "list-group-item";
+    itemContainer.className = "list-item";
 
     // Set item's properties
     item.href = url;
@@ -44,18 +39,18 @@
         trash.parentNode.parentNode.removeChild(itemContainer);
       };
     })(url));
+    trash.tabIndex = "0";
 
-    itemContainer.appendChild(item);
     itemContainer.appendChild(trash);
+    itemContainer.appendChild(item);
     return itemContainer;
   }
 
   function populateList(items) {
-    console.log("Populate list...");
-    document.getElementById('tabCount').textContent = "Total number of reading items: " + Object.keys(items).length;
+    document.getElementById('tabCount').textContent = Object.keys(items).length;
     var listContainer = document.getElementById('list-container');
 
-    // Remove the current list
+    // Remove the current list first
     while (tabList.firstChild) {
       tabList.removeChild(tabList.firstChild);
     }
@@ -98,30 +93,21 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    updateStatus("Customise the tile below or leave it as default");
 
+    // Fill the title textarea
     chrome.runtime.getBackgroundPage(function(eventPage) {
-      eventPage.rlUtils.getCurrentTab(renderTab);
+      eventPage.rlUtils.getCurrentTab(getTabTitle);
     });
 
+    // Retrieve the list of all saved items
     chrome.runtime.getBackgroundPage(function(eventPage) {
       eventPage.rlStorage.getAllTabs(populateList);
     });
 
-    document.getElementById("clearListButton").addEventListener('click', function() {
-      var confirmed = confirm("Are you sure you want to delete all links?");
-      if(confirmed === true){
-        chrome.runtime.getBackgroundPage(function(eventPage) {
-          eventPage.rlStorage.clearAllTabs(populateList([]));
-        });
-      }
-    });
-
+    // Wire an event to save a tab to the list
     document.getElementById("readLaterButton").addEventListener('click', function() {
       chrome.runtime.getBackgroundPage(function(eventPage){
-        eventPage.rlUtils.saveAndCloseCurrentTab(document.getElementById("cusTitle").value,
-                                                 document.getElementById("group").value
-                                                );
+        eventPage.rlUtils.saveAndCloseCurrentTab(document.getElementById("cusTitle").value, "");
       });
     });
   });
