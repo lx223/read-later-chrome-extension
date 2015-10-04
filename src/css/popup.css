@@ -94,6 +94,7 @@ textarea {
 
 .list-item * {
 	display: inline-block;
+	float: left;
 }
 
 .list-item a {
@@ -115,7 +116,6 @@ textarea {
 .list-item img {
 	height: 30px;
 	width: 30px;
-	float: left;
 	-webkit-filter: grayscale(1) opacity(50%);
 }
 

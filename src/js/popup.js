@@ -37,12 +37,13 @@
           eventPage.rlStorage.removeTab(url);
         });
         trash.parentNode.parentNode.removeChild(itemContainer);
+        document.getElementById('tabCount').textContent = document.getElementById('tabCount').textContent - 1;
       };
     })(url));
     trash.tabIndex = "0";
-
-    itemContainer.appendChild(trash);
     itemContainer.appendChild(item);
+    itemContainer.appendChild(trash);
+
     return itemContainer;
   }
 
