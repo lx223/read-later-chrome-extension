@@ -3,20 +3,51 @@
 
   var trashIconURI = "img/trash128_active.png";
 
-  function getTabTitle(tab) {
-    console.log("Render tab info: " + tab);
+  function getTabInfo(tab) {
+    if (typeof(tab) === "undefined") return;
     document.getElementById("cusTitle").placeholder = tab.title;
+
+    var favicon = document.createElement('canvas');
+    favicon.height = 16;
+    favicon.width = 16;
+    var favContext = favicon.getContext('2d');
+    var faviconUrl = "chrome://favicon/" + tab.url;
+    var img = new Image();
+    img.onload = function(){
+      favContext.drawImage(img, 0, 0); // Or at whatever offset you like
+      document.getElementById("faviconDataUrl").innerHTML = favicon.toDataURL();
+    };
+    img.src = faviconUrl;
   }
 
   // Create the HTML object for an item
-  function getListItem(url, title) {
-    console.log("Get list item: " + url + " title: " + title);
+  function getListItem(tab) {
+    var url = tab.url,
+        title = tab.title,
+        faviconDataUrl = tab.faviconDataUrl;
+
+    console.log("Get list item: " + tab.faviconDataUrl);
     var itemContainer = document.createElement('div');
+    var favicon = document.createElement('canvas');
     var item = document.createElement('a'); // Create HTML DOM for the clickable item
     var trash = document.createElement('img'); // Create HTML DOM to trash an item
 
     // Set itemContainer's properties
     itemContainer.className = "list-item";
+
+    // Set favicon's properties
+    favicon.height = 16;
+    favicon.width = 16;
+    var favContext = favicon.getContext('2d');
+    var img = new Image();
+    img.onload = function(){
+      favContext.drawImage(img, 0, 0); // Or at whatever offset you like
+      // alert(favicon.toDataURL());
+    };
+    if (typeof(faviconDataUrl) === "undefined") {
+      faviconDataUrl = "chrome://favicon/";
+    }
+    img.src = faviconDataUrl;
 
     // Set item's properties
     item.href = url;
@@ -41,6 +72,8 @@
       };
     })(url));
     trash.tabIndex = "0";
+
+    itemContainer.appendChild(favicon);
     itemContainer.appendChild(item);
     itemContainer.appendChild(trash);
 
@@ -61,6 +94,7 @@
       if (items.hasOwnProperty(key)) {
         var tab = {"url" : key,
                    "title" : items[key].title,
+                   "faviconDataUrl" : items[key].faviconDataUrl,
                    "timestamp" : items[key].timestamp
                  },
             group = (typeof(items[key].group) === "undefined") ? "Default" : items[key].group;
@@ -84,7 +118,7 @@
         groupList.className = "list-group";
         var tabs = groups[key];
         for (var index = 0; index < tabs.length; ++index) {
-          var item = getListItem(tabs[index].url, tabs[index].title);
+          var item = getListItem(tabs[index]);
           groupList.appendChild(item);
         }
 
@@ -97,7 +131,7 @@
 
     // Fill the title textarea
     chrome.runtime.getBackgroundPage(function(eventPage) {
-      eventPage.rlUtils.getCurrentTab(getTabTitle);
+      eventPage.rlUtils.getCurrentTab(getTabInfo);
     });
 
     // Retrieve the list of all saved items
@@ -108,7 +142,7 @@
     // Wire an event to save a tab to the list
     document.getElementById("readLaterButton").addEventListener('click', function() {
       chrome.runtime.getBackgroundPage(function(eventPage){
-        eventPage.rlUtils.saveAndCloseCurrentTab(document.getElementById("cusTitle").value, "");
+        eventPage.rlUtils.saveAndCloseCurrentTab(document.getElementById("cusTitle").value, "", "", document.getElementById("faviconDataUrl").innerHTML);
       });
     });
   });

@@ -22,20 +22,21 @@
       });
     },
 
-    getTabObject : function(title, group) {
+    getTabObject : function(title, group, faviconDataUrl) {
       if (title.length > MAX_TITLE_LENGTH) title = title.substr(0, MAX_TITLE_LENGTH) + "...";
       var tab = {};
       tab.timestamp = Date.now();
       tab.title = title;
       tab.group = (group === "") ? "Default" : group;
+      tab.faviconDataUrl = faviconDataUrl;
       return tab;
     },
 
-    saveAndCloseTab : function(tab, cusTitle, group, callback) {
+    saveAndCloseTab : function(tab, cusTitle, group, callback, faviconDataUrl) {
       var url = tab.url,
           title = (typeof(cusTitle) === "string" && cusTitle !== "") ? cusTitle : tab.title,
           key = url,
-          value = rlUtils.getTabObject(title, group);
+          value = rlUtils.getTabObject(title, group, faviconDataUrl);
       rlStorage.saveTab(key, value, function(){
         chrome.tabs.remove(tab.id);
       });
@@ -44,9 +45,9 @@
       }
     },
 
-    saveAndCloseCurrentTab : function(cusTitle, group, callback) {
+    saveAndCloseCurrentTab : function(cusTitle, group, callback, faviconDataUrl) {
       rlUtils.getCurrentTab(function(tab){
-        rlUtils.saveAndCloseTab(tab, cusTitle, group, callback);
+        rlUtils.saveAndCloseTab(tab, cusTitle, group, callback, faviconDataUrl);
       });
     },
 
