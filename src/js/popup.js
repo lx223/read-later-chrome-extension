@@ -45,7 +45,7 @@
       // alert(favicon.toDataURL());
     };
     if (typeof(faviconDataUrl) === "undefined") {
-      faviconDataUrl = "chrome://favicon/";
+      faviconDataUrl = "chrome://favicon/" + url;
     }
     img.src = faviconDataUrl;
 
