@@ -2,7 +2,7 @@
   "name": "Read Later - save tab and read later",
   "short_name": "Read Later",
   "description": "An easy way to save a tab and revisit it later",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "minimum_chrome_version": "35",
 
   "manifest_version": 2,

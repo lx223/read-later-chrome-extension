@@ -1,7 +1,7 @@
 (function(window){
   'use strict';
 
-  var contexts = ["all"];
+  var contexts = ["page"];
   var menuIds = {
     "readTabLater" : "read-later",
     "readAllLater" : "read-all-later",
@@ -18,19 +18,19 @@
 
       chrome.contextMenus.create({
         "id" : menuIds.readTabLater,
-        "title" : "Read this tab later",
+        "title" : "Read tab later",
         "contexts" : contexts
       });
 
       chrome.contextMenus.create({
         "id" : menuIds.readLinkLater,
-        "title" : "Read this link later",
+        "title" : "Read link later",
         "contexts" : ["link"]
       });
 
       chrome.contextMenus.create({
         "id" : menuIds.readAllLater,
-        "title" : "Read all tabs later",
+        "title" : "Read window later",
         "contexts" : contexts
       });
 
