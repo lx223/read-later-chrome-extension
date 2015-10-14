@@ -31,14 +31,16 @@
   "commands": {
     "read-later": {
       "suggested_key": {
-        "default": "Ctrl+Shift+S"
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
       },
       "description": "A quick way to save&close current tab to read later"
     },
 
     "_execute_browser_action": {
       "suggested_key": {
-        "default" : "Ctrl+Shift+A"
+        "default" : "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
       }
     }
   },
