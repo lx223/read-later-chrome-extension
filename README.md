@@ -10,6 +10,10 @@ As I am very new to Chrome Extension development and JavaScript, it may contain 
 2. Using **Google Chrome** browser, navigate to **chrome://extensions/** and enable "Developer mode" in the top right corner
 3. Click on the <kbd>Load unpacked extension...</kbd> button, browse to the unarchived directory of the downloaded release and confirm
 
+Or
+
+You can download from **[Chrome extention store](https://chrome.google.com/webstore/detail/read-later-save-tab-and-r/eimchnaiimdmfefpplagekjgigbjmohd)** and enjoy auto-updating with each new version.
+
 ### License
 
 This work is licensed under a GNU GENERAL PUBLIC LICENSE (v2)
